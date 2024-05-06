@@ -1,4 +1,7 @@
 import numpy as np
+import sys
+sys.path.append('C:\\Users\\Pc\\Downloads\\scikit-learn-clone')
+
 from supervised_learning.LinearRegression import LinearRegression
 from supervised_learning.LogisticRegression import LogisticRegression
 
@@ -103,7 +106,7 @@ if __name__ == '__main__':
     X = np.array([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]])
     y = np.array([0, 0, 1, 1, 1])
     model1 = LogisticRegression()
-    model.fit(X, y)
+    model1.fit(X, y)
     evaluator1 = ModelEvaluator(model1)
     metrics1 = evaluator1.evaluate(X, y)
     print(metrics1)
