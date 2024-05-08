@@ -1,9 +1,9 @@
-from Estimator import Estimator
+from Predictor import Predictor
 import numpy as np
 
-class LinearRegression(Estimator):
+class LinearRegression(Predictor):
     """
-    Linear regression estimator.
+    Linear regression predictor.
 
     Attributes:
     ----------
@@ -19,16 +19,18 @@ class LinearRegression(Estimator):
     Methods:
     --------
     __init__(learning_rate=0.01, n_iterations=1000, regularization=None, reg_strength=0.01):
-        Initialize linear regression estimator.
+        Initialize linear regression predictor.
     fit(X, y):
         Fit the model according to the given training data.
     predict(X):
         Predict the target for the provided data.
+    score(X, y):
+        Return the coefficient of determination R^2 of the prediction.
     """
 
     def __init__(self, learning_rate=0.01, n_iterations=1000, regularization=None, reg_strength=0.01):
         """
-        Initialize linear regression estimator.
+        Initialize linear regression predictor.
 
         Parameters:
         ----------
@@ -63,7 +65,7 @@ class LinearRegression(Estimator):
         Returns:
         -------
         self : LinearRegression
-            Fitted linear regression estimator.
+            Fitted linear regression predictor.
         """
         n_samples, n_features = X.shape
         self.weights = np.zeros(n_features)

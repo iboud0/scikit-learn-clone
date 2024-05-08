@@ -1,9 +1,9 @@
-from Estimator import Estimator
+from Predictor import Predictor
 import numpy as np
 
-class LogisticRegression(Estimator):
+class LogisticRegression(Predictor):
     """
-    Logistic regression estimator.
+    Logistic regression predictor.
 
     Attributes:
     ----------
@@ -21,16 +21,18 @@ class LogisticRegression(Estimator):
     Methods:
     --------
     __init__(learning_rate=0.01, max_iters=1000, tol=1e-4):
-        Initialize logistic regression estimator.
+        Initialize logistic regression predictor.
     fit(X, y):
         Fit the model according to the given training data.
     predict(X):
         Predict the target for the provided data.
+    score(X, y):
+        Return the coefficient of determination R^2 of the prediction.
     """
 
     def __init__(self, learning_rate=0.01, max_iters=1000, tol=1e-4):
         """
-        Initialize logistic regression estimator.
+        Initialize logistic regression predictor.
 
         Parameters:
         ----------
@@ -78,7 +80,7 @@ class LogisticRegression(Estimator):
         Returns:
         -------
         self : LogisticRegression
-            Fitted logistic regression estimator.
+            Fitted logistic regression predictor.
         """
         n_samples, n_features = X.shape
         self.weights = np.zeros(n_features)
@@ -120,4 +122,3 @@ class LogisticRegression(Estimator):
         y_predicted = self._sigmoid(linear_model)
         y_predicted_cls = np.round(y_predicted)
         return y_predicted_cls
-    

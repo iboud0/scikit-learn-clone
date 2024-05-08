@@ -1,4 +1,5 @@
 from Estimator import Estimator
+import numpy as np
 
 class Predictor(Estimator):
     """
@@ -75,7 +76,8 @@ class Predictor(Estimator):
         y_pred : array-like, shape (n_samples,)
             Predicted targets.
         """
-        pass
+        self.fit(X, y)
+        return self.predict(X)
 
     def score(self, X, y):
         """
@@ -93,5 +95,9 @@ class Predictor(Estimator):
         score : float
             R^2 of self.predict(X) with respect to y.
         """
-        pass
+        y_pred = self.predict(X)
+        ssr = np.sum((y_pred - y.mean()) ** 2)
+        sst = np.sum((y - y.mean()) ** 2)
+        r_squared = 1 - (ssr / sst)
+        return r_squared
     
