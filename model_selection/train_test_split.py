@@ -1,12 +1,32 @@
 import numpy as np
 
-class train_test_split:
+class TrainTestSplitter:
+    """
+    Split the data into random train and test subsets.
+
+    This implementation shuffles the data randomly and splits it into two portions,
+    one for training and the other for testing.
+
+    Attributes:
+    ----------
+    random_state : int or None, default=None
+        Seed for the random number generator.
+
+    Methods:
+    --------
+    split(X, y, test_size=0.2):
+        Split the data into training and testing sets.
+
+    """
+
     def __init__(self, random_state=None):
         """
         Initialize the DataSplitter.
 
         Parameters:
-        - random_state: Seed for the random number generator (default is None)
+        ----------
+        random_state : int or None, default=None
+            Seed for the random number generator.
         """
         self.random_state = random_state
 
@@ -15,15 +35,24 @@ class train_test_split:
         Split the data into training and testing sets.
 
         Parameters:
-        - X: Features (numpy array or list of lists)
-        - y: Target variable (numpy array or list)
-        - test_size: Proportion of the data to include in the test split (default is 0.2)
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Features.
+        y : array-like of shape (n_samples,)
+            Target variable.
+        test_size : float, default=0.2
+            Proportion of the data to include in the test split.
 
         Returns:
-        - X_train: Features for training
-        - X_test: Features for testing
-        - y_train: Target variable for training
-        - y_test: Target variable for testing
+        -------
+        X_train : array-like of shape (n_train_samples, n_features)
+            Features for training.
+        X_test : array-like of shape (n_test_samples, n_features)
+            Features for testing.
+        y_train : array-like of shape (n_train_samples,)
+            Target variable for training.
+        y_test : array-like of shape (n_test_samples,)
+            Target variable for testing.
         """
         if self.random_state:
             np.random.seed(self.random_state)
@@ -37,16 +66,4 @@ class train_test_split:
         y_train = np.array([y[i] for i in train_indices])
         y_test = np.array([y[i] for i in test_indices])
 
-        return X_train, X_test, y_train, y_test 
-#main
-if __name__ == '__main__':
-    # Testing DataSplitter
-    X = np.array([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]])
-    y = np.array([0, 1, 0, 1, 0])
-    splitter = train_test_split(random_state=42)
-    X_train, X_test, y_train, y_test = splitter.split(X, y, test_size=0.2)
-    print(X_train) # Expected output: [[5, 6], [1, 2], [9, 10], [3, 4]]
-    print(X_test) # Expected output: [[7, 8]]
-    print(y_train) # Expected output: [0, 0, 0, 1]
-    print(y_test) # Expected output: [1]
-          
+        return X_train, X_test, y_train, y_test
