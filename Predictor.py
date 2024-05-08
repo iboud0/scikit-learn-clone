@@ -94,3 +94,4 @@ class Predictor(Estimator):
             R^2 of self.predict(X) with respect to y.
         """
         pass
+    

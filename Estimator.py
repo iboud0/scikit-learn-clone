@@ -77,3 +77,4 @@ class Estimator:
             Fitted estimator.
         """
         pass
+    
