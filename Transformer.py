@@ -50,4 +50,5 @@ class Transformer(Estimator):
         X_transformed : array-like, shape (n_samples, n_features)
             Transformed data.
         """
-        pass
+        self.fit(X, y)
+        return self.transform(X)

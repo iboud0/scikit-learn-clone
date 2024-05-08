@@ -42,24 +42,6 @@ class Predictor(Estimator):
         """
         pass
 
-    def fit(self, X, y):
-        """
-        Fit the model according to the given training data.
-
-        Parameters:
-        ----------
-        X : array-like or sparse matrix, shape (n_samples, n_features)
-            Training data.
-        y : array-like, shape (n_samples,)
-            Target values.
-
-        Returns:
-        -------
-        self : Predictor
-            Fitted predictor.
-        """
-        pass
-
     def fit_predict(self, X, y=None):
         """
         Fit the model and predict the target for the provided data.
