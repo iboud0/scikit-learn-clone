@@ -35,7 +35,7 @@ class Estimator:
         params : dict
             Parameter names mapped to their values.
         """
-        pass
+        return self.__dict__
 
     def set_params(self, **params):
         """
@@ -56,7 +56,9 @@ class Estimator:
         self : Estimator
             Estimator instance.
         """
-        pass
+        for param, value in params.items():
+            setattr(self, param, value)
+        return self
 
     def fit(self, X, y=None):
         """
