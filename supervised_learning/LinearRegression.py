@@ -101,3 +101,4 @@ class LinearRegression(Predictor):
             Predicted targets.
         """
         return np.dot(X, self.weights) + self.bias
+    

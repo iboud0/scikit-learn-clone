@@ -4,6 +4,10 @@ sys.path.append('C:\\Users\\Pc\\Downloads\\scikit-learn-clone')
 
 from supervised_learning.LinearRegression import LinearRegression
 from supervised_learning.LogisticRegression import LogisticRegression
+from supervised_learning.knn import KNNClassifier
+from supervised_learning.NaiveBayes import GaussianNB
+from supervised_learning.decisiontrees import DecisionTree
+
 
 class ModelEvaluator:
     def __init__(self, model):
@@ -99,7 +103,7 @@ if __name__ == '__main__':
     model.fit(X, y)
     evaluator = ModelEvaluator(model)
     metrics = evaluator.evaluate(X, y)
-    print(metrics)                                                                      
+    print(metrics)                                                                    
           
     # Expected output: {'accuracy': 1.0, 'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'roc_auc': 1.0, 'mse': 0.0}
     # Testing ModelEvaluator with Logistic Regression
@@ -111,4 +115,18 @@ if __name__ == '__main__':
     metrics1 = evaluator1.evaluate(X, y)
     print(metrics1)
     # Expected output: {'accuracy': 1.0, 'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'roc_auc': 1.0, 'mse': 0.0}
-    
+    model2 = KNNClassifier()
+    model2.fit(X, y)
+    evaluator2 = ModelEvaluator(model2)
+    metrics2 = evaluator2.evaluate(X, y)
+    print(metrics2)
+    model3 = GaussianNB()
+    model3.fit(X, y)
+    evaluator3 = ModelEvaluator(model3)
+    metrics3 = evaluator3.evaluate(X, y)
+    print(metrics3)
+    model4 = DecisionTree()
+    model4.fit(X, y)
+    evaluator4 = ModelEvaluator(model4)
+    metrics4 = evaluator4.evaluate(X, y)
+    print(metrics4)
