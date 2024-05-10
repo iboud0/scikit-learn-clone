@@ -103,7 +103,18 @@ if __name__ == '__main__':
     model.fit(X, y)
     evaluator = ModelEvaluator(model)
     metrics = evaluator.evaluate(X, y)
-    print(metrics)                                                                    
+    print(metrics) 
+    from sklearn.linear_model import LinearRegression 
+    sklearn_model = LinearRegression()
+    sklearn_model.fit(X, y)
+    sklearn_y_pred = sklearn_model.predict(X)
+
+    # Calculating metrics for scikit-learn Linear Regression
+    sklearn_metrics = {
+        'mse': np.mean((y - sklearn_y_pred) ** 2)
+    }
+    print("\nScikit-learn Linear Regression Metrics:")
+    print(sklearn_metrics)                                                                   
           
     # Expected output: {'accuracy': 1.0, 'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'roc_auc': 1.0, 'mse': 0.0}
     # Testing ModelEvaluator with Logistic Regression
@@ -114,17 +125,58 @@ if __name__ == '__main__':
     evaluator1 = ModelEvaluator(model1)
     metrics1 = evaluator1.evaluate(X, y)
     print(metrics1)
+    from sklearn.linear_model import LogisticRegression 
+    sklearn_model1 = LogisticRegression()
+    sklearn_model1.fit(X, y)
+    sklearn_y_pred1 = sklearn_model1.predict(X)
+
+    # Calculating metrics for scikit-learn Linear Regression
+    sklearn_metrics1 = {
+        'mse': np.mean((y - sklearn_y_pred1) ** 2)
+    }
+    print("\nScikit-learn Logistic Regression Metrics:")
+    print(sklearn_metrics1)
     # Expected output: {'accuracy': 1.0, 'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'roc_auc': 1.0, 'mse': 0.0}
     model2 = KNNClassifier()
     model2.fit(X, y)
     evaluator2 = ModelEvaluator(model2)
     metrics2 = evaluator2.evaluate(X, y)
     print(metrics2)
+    #import knn from sklearn
+    from sklearn.neighbors import KNeighborsClassifier
+    sklearn_model2 = KNeighborsClassifier()
+    sklearn_model2.fit(X, y)
+    sklearn_y_pred2 = sklearn_model2.predict(X)
+    #metric
+    sklearn_metrics2 = {
+        'mse': np.mean((y - sklearn_y_pred2) ** 2)
+    }
+    print("\nScikit-learn KNN Metrics:")
+    print(sklearn_metrics2)
+
+
+
+
+
     model3 = GaussianNB()
     model3.fit(X, y)
     evaluator3 = ModelEvaluator(model3)
     metrics3 = evaluator3.evaluate(X, y)
     print(metrics3)
+    #import GaussianNB from sklearn
+    from sklearn.naive_bayes import GaussianNB
+    sklearn_model3 = GaussianNB()
+    sklearn_model3.fit(X, y)
+    sklearn_y_pred3 = sklearn_model3.predict(X)
+    #metric
+    sklearn_metrics3 = {
+        'mse': np.mean((y - sklearn_y_pred3) ** 2)
+    }
+    print("\nScikit-learn GaussianNB Metrics:")
+    print(sklearn_metrics3)
+
+
+
     model4 = DecisionTree()
     model4.fit(X, y)
     evaluator4 = ModelEvaluator(model4)
