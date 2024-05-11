@@ -9,7 +9,11 @@ from supervised_learning.NaiveBayes import GaussianNB
 from supervised_learning.decisiontrees import DecisionTreeRegressor
 from supervised_learning.decisiontrees import DecisionTreeClassifier
 from supervised_learning.decisiontrees import DecisionTree
+from supervised_learning.randomForest import RandomForestClassifier
+from supervised_learning.randomForest import RandomForestRegressor
 
+
+import numpy as np
 
 class ModelEvaluator:
     def __init__(self, model):
@@ -19,6 +23,8 @@ class ModelEvaluator:
         """
         Calculate the accuracy of the model.
         """
+        if len(y_true) == 0:
+            raise ValueError("y_true is empty")
         return np.sum(y_true == y_pred) / len(y_true)
 
     def precision(self, y_true, y_pred):
@@ -94,6 +100,7 @@ class ModelEvaluator:
             'roc_auc': roc_auc,
             'mse': mse
         }
+
 
 
 #test
@@ -273,3 +280,46 @@ if __name__ == '__main__':
     }
     print("\nScikit-learn Decision Tree Metrics:")
     print(sklearn_metrics4)
+
+
+    # Testing RandomForestClassifier
+    X_cls = np.array([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]])
+    y_cls = np.array([0, 0, 1, 1, 1])
+
+    # Custom RandomForestClassifier
+    rf_cls = RandomForestClassifier(n_estimators=100)
+    rf_cls.fit(X_cls, y_cls)
+    evaluator_cls = ModelEvaluator(rf_cls)
+    metrics_cls = evaluator_cls.evaluate(X_cls, y_cls)
+    print("\nCustom RandomForestClassifier Metrics:")
+    print(metrics_cls)
+
+    # Scikit-learn RandomForestClassifier
+    from sklearn.ensemble import RandomForestClassifier as SKRandomForestClassifier
+    sk_rf_cls = SKRandomForestClassifier(n_estimators=100)
+    sk_rf_cls.fit(X_cls, y_cls)
+    sk_y_pred_cls = sk_rf_cls.predict(X_cls)
+    sk_metrics_cls = ModelEvaluator(sk_rf_cls).evaluate(X_cls, y_cls)
+    print("\nScikit-learn RandomForestClassifier Metrics:")
+    print(sk_metrics_cls)
+
+    # # Testing RandomForestRegressor
+    # X_reg = np.array([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]])
+    # y_reg = np.array([2, 3, 4, 5, 6])
+
+    # # Custom RandomForestRegressor
+    # rf_reg = RandomForestRegressor(n_estimators=100)
+    # rf_reg.fit(X_reg, y_reg)
+    # evaluator_reg = ModelEvaluator(rf_reg)
+    # metrics_reg = evaluator_reg.evaluate(X_reg, y_reg)
+    # print("\nCustom RandomForestRegressor Metrics:")
+    # print(metrics_reg)
+
+    # # Scikit-learn RandomForestRegressor
+    # from sklearn.ensemble import RandomForestRegressor as SKRandomForestRegressor
+    # sk_rf_reg = SKRandomForestRegressor(n_estimators=100)
+    # sk_rf_reg.fit(X_reg, y_reg)
+    # sk_y_pred_reg = sk_rf_reg.predict(X_reg)
+    # sk_metrics_reg = ModelEvaluator(sk_rf_reg).evaluate(X_reg, y_reg)
+    # print("\nScikit-learn RandomForestRegressor Metrics:")
+    # print(sk_metrics_reg)

@@ -17,6 +17,8 @@ class DecisionTree(Predictor):
     ----------
     max_depth : int or None, default=None
         Maximum depth of the tree.
+    min_samples_split : int, default=2
+        The minimum number of samples required to split an internal node.
 
     Methods:
     --------
@@ -25,8 +27,11 @@ class DecisionTree(Predictor):
     predict(X):
         Predict the target for the provided data.
     """
-    def __init__(self, max_depth=None):
+    def __init__(self, max_depth=None, min_samples_split=2,min_samples_leaf=2,random_state=None):
         self.max_depth = max_depth
+        self.min_samples_split = min_samples_split
+        self.min_samples_leaf = min_samples_leaf
+        self.random_state = random_state
 
     def fit(self, X, y):
         self.n_classes_ = len(np.unique(y))

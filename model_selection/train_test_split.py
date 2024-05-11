@@ -67,3 +67,4 @@ class TrainTestSplitter:
         y_test = np.array([y[i] for i in test_indices])
 
         return X_train, X_test, y_train, y_test
+    
