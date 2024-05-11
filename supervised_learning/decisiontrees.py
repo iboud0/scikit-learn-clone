@@ -1,3 +1,4 @@
+from Predictor import Predictor
 import numpy as np
 
 class Node:
@@ -8,7 +9,22 @@ class Node:
         self.left = left
         self.right = right
 
-class DecisionTree:
+class DecisionTree(Predictor):
+    """
+    Decision tree classifier and regressor.
+
+    Attributes:
+    ----------
+    max_depth : int or None, default=None
+        Maximum depth of the tree.
+
+    Methods:
+    --------
+    fit(X, y):
+        Fit the model according to the given training data.
+    predict(X):
+        Predict the target for the provided data.
+    """
     def __init__(self, max_depth=None):
         self.max_depth = max_depth
 
@@ -84,6 +100,16 @@ class DecisionTree:
         return node.value
 
 class DecisionTreeRegressor(DecisionTree):
+    """
+    Decision tree regressor.
+
+    Methods:
+    --------
+    fit(X, y):
+        Fit the model according to the given training data.
+    predict(X):
+        Predict the target for the provided data.
+    """
     def fit(self, X, y):
         self.y_mean_ = np.mean(y)
         super().fit(X, y)
@@ -98,6 +124,16 @@ class DecisionTreeRegressor(DecisionTree):
         return node.value
 
 class DecisionTreeClassifier(DecisionTree):
+    """
+    Decision tree classifier.
+
+    Methods:
+    --------
+    fit(X, y):
+        Fit the model according to the given training data.
+    predict(X):
+        Predict the target for the provided data.
+    """
     def _predict(self, inputs):
         node = self.tree_
         while node.left:
@@ -107,15 +143,4 @@ class DecisionTreeClassifier(DecisionTree):
                 node = node.right
         return node.value
 
-# Example usage
-X = np.array([[0, 0], [1, 1], [2, 2]])
-y_reg = np.array([0, 1, 2])
-y_clf = np.array([0, 0, 1])
 
-dt_reg = DecisionTreeRegressor()
-dt_clf = DecisionTreeClassifier()
-dt_reg.fit(X, y_reg)
-dt_clf.fit(X, y_clf)
-
-print("Regression Prediction:", dt_reg.predict([[1, 0]]))
-print("Classification Prediction:", dt_clf.predict([[1, 0]]))
