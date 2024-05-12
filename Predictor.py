@@ -77,6 +77,7 @@ class Predictor(Estimator):
         score : float
             R^2 of self.predict(X) with respect to y.
         """
+        # TODO: add sample weight
         y_pred = self.predict(X)
         ssr = np.sum((y_pred - y.mean()) ** 2)
         sst = np.sum((y - y.mean()) ** 2)
