@@ -1,3 +1,4 @@
+from .kfold import KFold
 from .train_test_split import TrainTestSplitter
 
 def train_test_split(X, y, test_size=0.25, random_state=None):
