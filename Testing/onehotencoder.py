@@ -1,6 +1,8 @@
 # Testing/test_onehotencoder.py
+import os
 import sys
-sys.path.append('C:\\Users\\Pc\\Downloads\\scikit-learn-clone')
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(project_root)
 import unittest
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder as SKOneHotEncoder

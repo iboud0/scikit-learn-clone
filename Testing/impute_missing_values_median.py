@@ -1,7 +1,8 @@
 # Testing/test_impute_missing_values_median.py
+import os
 import sys
-print(sys.path)
-sys.path.append('C:\\Users\\Pc\\Downloads\\scikit-learn-clone')
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(project_root)
 import unittest
 import numpy as np
 from preprocessing.impute_missing_values_median import impute_missing_values_median

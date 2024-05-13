@@ -1,4 +1,7 @@
-
+import os
+import sys
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(project_root)
 from Predictor import Predictor
 import numpy as np
 
@@ -83,7 +86,7 @@ class LogisticRegression(Predictor):
         self : LogisticRegression
             Fitted logistic regression predictor.
         """
-        n_samples, n_features = X.shape
+        n_samples, n_features = X.shape  # Add this line to get the number of samples
         self.weights = np.zeros(n_features)
         self.bias = 0
         prev_cost = float('inf')
@@ -91,9 +94,10 @@ class LogisticRegression(Predictor):
         for _ in range(self.max_iters):
             linear_model = np.dot(X, self.weights) + self.bias
             y_predicted = self._sigmoid(linear_model)
-            cost = -np.mean(y * np.log(y_predicted) + (1 - y) * np.log(1 - y_predicted))
+            epsilon = 1e-10
+            cost = -np.mean(y * np.log(y_predicted + epsilon) + (1 - y) * np.log(1 - y_predicted + epsilon))
 
-            if abs(prev_cost - cost) < self.tol:
+            if abs(prev_cost - cost) < self.tol or np.isnan(cost):
                 break
 
             prev_cost = cost
@@ -102,8 +106,9 @@ class LogisticRegression(Predictor):
 
             self.weights -= self.learning_rate * dw
             self.bias -= self.learning_rate * db
-        
+
         return self
+
 
     def predict(self, X):
         """

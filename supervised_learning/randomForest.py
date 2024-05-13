@@ -1,8 +1,10 @@
 
+import os
 import sys
-sys.path.append('C:\\Users\\Pc\\Downloads\\scikit-learn-clone')
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(project_root)
 from Predictor import Predictor
-from supervised_learning.decisiontrees import DecisionTreeClassifier, DecisionTreeRegressor
+from supervised_learning.DecisionTree import DecisionTreeClassifier, DecisionTreeRegressor
 
 import numpy as np
 
