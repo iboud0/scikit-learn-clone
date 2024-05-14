@@ -18,16 +18,16 @@ from supervised_learning.randomForest import RandomForestRegressor
 
 
 
-# from metrics.accuracy import accuracy_score
-# from metrics.precision import  precision_score
-# from metrics.recall import recall_score
-# from metrics.confusion_matrix import confusion_matrix
-# from metrics.f1_score import f1_score
-# from metrics.mean_absolute_error import mean_absolute_error
-# from metrics.mean_squared_error import mean_squared_error
-# from metrics.r2_score import r2_score
-from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix, f1_score, mean_squared_error
-from sklearn.metrics import r2_score
+from metrics.accuracy import accuracy_score
+from metrics.precision import  precision_score
+from metrics.recall import recall_score
+from metrics.confusion_matrix import confusion_matrix
+from metrics.f1_score import f1_score
+from metrics.mean_absolute_error import mean_absolute_error
+from metrics.mean_squared_error import mean_squared_error
+from metrics.r2_score import r2_score
+# from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix, f1_score, mean_squared_error
+# from sklearn.metrics import r2_score
 
 
 # Load the Iris dataset
@@ -156,7 +156,7 @@ sklearn_random_forest_regressor.fit(X_train, y_train)
 
 
 
-# sklearn_classification_metrics = {}
+sklearn_classification_metrics = {}
 
 
 # # Evaluate scikit-learn's implementations
@@ -204,33 +204,80 @@ sklearn_random_forest_regressor.fit(X_train, y_train)
 
 
 
+# custom_classification_metrics['linear_regression_metrics'] = {
+#     'mse': mean_squared_error(y_test, linear_regression.predict(X_test)),
+#     'r2_score': r2_score(y_test, linear_regression.predict(X_test))
+# }
+# custom_classification_metrics['logistic_regression_metrics'] = {
+#     'accuracy': accuracy_score(y_test, logistic_regression.predict(X_test)),
+#     'precision': precision_score(y_test, logistic_regression.predict(X_test), average='macro', zero_division=1),
+#     'recall': recall_score(y_test, logistic_regression.predict(X_test), average='macro'),
+#     'f1_score': f1_score(y_test, logistic_regression.predict(X_test), average='macro')
+# }
+# custom_classification_metrics['knn_metrics'] = {
+#     'accuracy': accuracy_score(y_test, knn.predict(X_test)),
+#     'precision': precision_score(y_test, knn.predict(X_test), average='macro', zero_division=1),
+#     'recall': recall_score(y_test, knn.predict(X_test), average='macro'),
+#     'f1_score': f1_score(y_test, knn.predict(X_test), average='macro')
+# }
+# custom_classification_metrics['naive_bayes_metrics'] = {
+#     'accuracy': accuracy_score(y_test, naive_bayes.predict(X_test)),
+#     'precision': precision_score(y_test, naive_bayes.predict(X_test), average='macro', zero_division=1),
+#     'recall': recall_score(y_test, naive_bayes.predict(X_test), average='macro'),
+#     'f1_score': f1_score(y_test, naive_bayes.predict(X_test), average='macro')
+# }
+# custom_classification_metrics['decision_tree_metrics_classifier'] = {
+#     'accuracy': accuracy_score(y_test, decision_tree_classifier.predict(X_test)),
+#     'precision': precision_score(y_test, decision_tree_classifier.predict(X_test), average='macro'),
+#     'recall': recall_score(y_test, decision_tree_classifier.predict(X_test), average='macro'),
+#     'f1_score': f1_score(y_test, decision_tree_classifier.predict(X_test), average='macro')
+# }
+# custom_classification_metrics['decision_tree_metrics_regressor'] = {
+#     'mse': mean_squared_error(y_test, decision_tree_regressor.predict(X_test)),
+#     'r2_score': r2_score(y_test, decision_tree_regressor.predict(X_test))
+# }
+
+# custom_classification_metrics['random_forest_classifier'] = {
+#     'accuracy': accuracy_score(y_test, random_forest_classifier.predict(X_test)),
+#     'precision': precision_score(y_test, random_forest_classifier.predict(X_test), average='macro'),
+#     'recall': recall_score(y_test, random_forest_classifier.predict(X_test), average='macro'),
+#     'f1_score': f1_score(y_test, random_forest_classifier.predict(X_test), average='macro')
+# }
+# custom_classification_metrics['random_forest_regressor'] = {
+#     'mse': mean_squared_error(y_test, random_forest_regressor.predict(X_test)),
+#     'r2_score': r2_score(y_test, random_forest_regressor.predict(X_test))
+# }
+
+
+
+
 custom_classification_metrics['linear_regression_metrics'] = {
     'mse': mean_squared_error(y_test, linear_regression.predict(X_test)),
     'r2_score': r2_score(y_test, linear_regression.predict(X_test))
 }
 custom_classification_metrics['logistic_regression_metrics'] = {
     'accuracy': accuracy_score(y_test, logistic_regression.predict(X_test)),
-    'precision': precision_score(y_test, logistic_regression.predict(X_test), average='macro', zero_division=1),
-    'recall': recall_score(y_test, logistic_regression.predict(X_test), average='macro'),
-    'f1_score': f1_score(y_test, logistic_regression.predict(X_test), average='macro')
+    'precision': precision_score(y_test, logistic_regression.predict(X_test)),
+    'recall': recall_score(y_test, logistic_regression.predict(X_test)),
+    'f1_score': f1_score(y_test, logistic_regression.predict(X_test))
 }
 custom_classification_metrics['knn_metrics'] = {
     'accuracy': accuracy_score(y_test, knn.predict(X_test)),
-    'precision': precision_score(y_test, knn.predict(X_test), average='macro', zero_division=1),
-    'recall': recall_score(y_test, knn.predict(X_test), average='macro'),
-    'f1_score': f1_score(y_test, knn.predict(X_test), average='macro')
+    'precision': precision_score(y_test, knn.predict(X_test)),
+    'recall': recall_score(y_test, knn.predict(X_test)),
+    'f1_score': f1_score(y_test, knn.predict(X_test) )
 }
 custom_classification_metrics['naive_bayes_metrics'] = {
     'accuracy': accuracy_score(y_test, naive_bayes.predict(X_test)),
-    'precision': precision_score(y_test, naive_bayes.predict(X_test), average='macro', zero_division=1),
-    'recall': recall_score(y_test, naive_bayes.predict(X_test), average='macro'),
-    'f1_score': f1_score(y_test, naive_bayes.predict(X_test), average='macro')
+    'precision': precision_score(y_test, naive_bayes.predict(X_test)),
+    'recall': recall_score(y_test, naive_bayes.predict(X_test), ),
+    'f1_score': f1_score(y_test, naive_bayes.predict(X_test), )
 }
 custom_classification_metrics['decision_tree_metrics_classifier'] = {
     'accuracy': accuracy_score(y_test, decision_tree_classifier.predict(X_test)),
-    'precision': precision_score(y_test, decision_tree_classifier.predict(X_test), average='macro'),
-    'recall': recall_score(y_test, decision_tree_classifier.predict(X_test), average='macro'),
-    'f1_score': f1_score(y_test, decision_tree_classifier.predict(X_test), average='macro')
+    'precision': precision_score(y_test, decision_tree_classifier.predict(X_test), ),
+    'recall': recall_score(y_test, decision_tree_classifier.predict(X_test), ),
+    'f1_score': f1_score(y_test, decision_tree_classifier.predict(X_test), )
 }
 custom_classification_metrics['decision_tree_metrics_regressor'] = {
     'mse': mean_squared_error(y_test, decision_tree_regressor.predict(X_test)),
@@ -239,9 +286,9 @@ custom_classification_metrics['decision_tree_metrics_regressor'] = {
 
 custom_classification_metrics['random_forest_classifier'] = {
     'accuracy': accuracy_score(y_test, random_forest_classifier.predict(X_test)),
-    'precision': precision_score(y_test, random_forest_classifier.predict(X_test), average='macro'),
-    'recall': recall_score(y_test, random_forest_classifier.predict(X_test), average='macro'),
-    'f1_score': f1_score(y_test, random_forest_classifier.predict(X_test), average='macro')
+    'precision': precision_score(y_test, random_forest_classifier.predict(X_test)),
+    'recall': recall_score(y_test, random_forest_classifier.predict(X_test)),
+    'f1_score': f1_score(y_test, random_forest_classifier.predict(X_test))
 }
 custom_classification_metrics['random_forest_regressor'] = {
     'mse': mean_squared_error(y_test, random_forest_regressor.predict(X_test)),
@@ -282,6 +329,8 @@ print("\nCustom Classification Metrics:\
 
 sklearn_classification_metrics = {}
 
+
+
 sklearn_classification_metrics['Linear Regression'] = {
     'mse': mean_squared_error(y_test, sklearn_linear_regression.predict(X_test)),
     'r2_score': r2_score(y_test, sklearn_linear_regression.predict(X_test))
@@ -289,27 +338,27 @@ sklearn_classification_metrics['Linear Regression'] = {
 
 sklearn_classification_metrics['Logistic Regression'] = {
     'accuracy': accuracy_score(y_test, sklearn_logistic_regression.predict(X_test)),
-    'precision': precision_score(y_test, sklearn_logistic_regression.predict(X_test), average='macro', zero_division=1),
-    'recall': recall_score(y_test, sklearn_logistic_regression.predict(X_test), average='macro'),
-    'f1_score': f1_score(y_test, sklearn_logistic_regression.predict(X_test), average='macro')
+    'precision': precision_score(y_test, sklearn_logistic_regression.predict(X_test)),
+    'recall': recall_score(y_test, sklearn_logistic_regression.predict(X_test)),
+    'f1_score': f1_score(y_test, sklearn_logistic_regression.predict(X_test) )
 }
 sklearn_classification_metrics['KNN'] = {
     'accuracy': accuracy_score(y_test, sklearn_knn.predict(X_test)),
-    'precision': precision_score(y_test, sklearn_knn.predict(X_test), average='macro', zero_division=1),
-    'recall': recall_score(y_test, sklearn_knn.predict(X_test), average='macro'),
-    'f1_score': f1_score(y_test, sklearn_knn.predict(X_test), average='macro')
+    'precision': precision_score(y_test, sklearn_knn.predict(X_test)),
+    'recall': recall_score(y_test, sklearn_knn.predict(X_test), ),
+    'f1_score': f1_score(y_test, sklearn_knn.predict(X_test), )
 }
 sklearn_classification_metrics['Naive Bayes'] = {
     'accuracy': accuracy_score(y_test, sklearn_naive_bayes.predict(X_test)),
-    'precision': precision_score(y_test, sklearn_naive_bayes.predict(X_test), average='macro', zero_division=1),
-    'recall': recall_score(y_test, sklearn_naive_bayes.predict(X_test), average='macro'),
-    'f1_score': f1_score(y_test, sklearn_naive_bayes.predict(X_test), average='macro')
+    'precision': precision_score(y_test, sklearn_naive_bayes.predict(X_test)),
+    'recall': recall_score(y_test, sklearn_naive_bayes.predict(X_test)),
+    'f1_score': f1_score(y_test, sklearn_naive_bayes.predict(X_test))
 }
 sklearn_classification_metrics['Decision Tree classifier'] = {
     'accuracy': accuracy_score(y_test, sklearn_decision_tree_classifier.predict(X_test)),
-    'precision': precision_score(y_test, sklearn_decision_tree_classifier.predict(X_test), average='macro'),
-    'recall': recall_score(y_test, sklearn_decision_tree_classifier.predict(X_test), average='macro'),
-    'f1_score': f1_score(y_test, sklearn_decision_tree_classifier.predict(X_test), average='macro')
+    'precision': precision_score(y_test, sklearn_decision_tree_classifier.predict(X_test)),
+    'recall': recall_score(y_test, sklearn_decision_tree_classifier.predict(X_test)),
+    'f1_score': f1_score(y_test, sklearn_decision_tree_classifier.predict(X_test))
 }
 sklearn_classification_metrics['Decision Tree regressor'] = {
     'mse': mean_squared_error(y_test, sklearn_decision_tree_regressor.predict(X_test)),
@@ -318,14 +367,61 @@ sklearn_classification_metrics['Decision Tree regressor'] = {
 
 sklearn_classification_metrics['Random Forest classifier'] = {
     'accuracy': accuracy_score(y_test, sklearn_random_forest_classifier.predict(X_test)),
-    'precision': precision_score(y_test, sklearn_random_forest_classifier.predict(X_test), average='macro'),
-    'recall': recall_score(y_test, sklearn_random_forest_classifier.predict(X_test), average='macro'),
-    'f1_score': f1_score(y_test, sklearn_random_forest_classifier.predict(X_test), average='macro')
+    'precision': precision_score(y_test, sklearn_random_forest_classifier.predict(X_test)),
+    'recall': recall_score(y_test, sklearn_random_forest_classifier.predict(X_test)),
+    'f1_score': f1_score(y_test, sklearn_random_forest_classifier.predict(X_test))
 }
 sklearn_classification_metrics['Random Forest regressor'] = {
     'mse': mean_squared_error(y_test, sklearn_random_forest_regressor.predict(X_test)),
     'r2_score': r2_score(y_test, sklearn_random_forest_regressor.predict(X_test))
 }
+
+
+
+# sklearn_classification_metrics['Linear Regression'] = {
+#     'mse': mean_squared_error(y_test, sklearn_linear_regression.predict(X_test)),
+#     'r2_score': r2_score(y_test, sklearn_linear_regression.predict(X_test))
+# }
+
+# sklearn_classification_metrics['Logistic Regression'] = {
+#     'accuracy': accuracy_score(y_test, sklearn_logistic_regression.predict(X_test)),
+#     'precision': precision_score(y_test, sklearn_logistic_regression.predict(X_test), average='macro', zero_division=1),
+#     'recall': recall_score(y_test, sklearn_logistic_regression.predict(X_test), average='macro'),
+#     'f1_score': f1_score(y_test, sklearn_logistic_regression.predict(X_test), average='macro')
+# }
+# sklearn_classification_metrics['KNN'] = {
+#     'accuracy': accuracy_score(y_test, sklearn_knn.predict(X_test)),
+#     'precision': precision_score(y_test, sklearn_knn.predict(X_test), average='macro', zero_division=1),
+#     'recall': recall_score(y_test, sklearn_knn.predict(X_test), average='macro'),
+#     'f1_score': f1_score(y_test, sklearn_knn.predict(X_test), average='macro')
+# }
+# sklearn_classification_metrics['Naive Bayes'] = {
+#     'accuracy': accuracy_score(y_test, sklearn_naive_bayes.predict(X_test)),
+#     'precision': precision_score(y_test, sklearn_naive_bayes.predict(X_test), average='macro', zero_division=1),
+#     'recall': recall_score(y_test, sklearn_naive_bayes.predict(X_test), average='macro'),
+#     'f1_score': f1_score(y_test, sklearn_naive_bayes.predict(X_test), average='macro')
+# }
+# sklearn_classification_metrics['Decision Tree classifier'] = {
+#     'accuracy': accuracy_score(y_test, sklearn_decision_tree_classifier.predict(X_test)),
+#     'precision': precision_score(y_test, sklearn_decision_tree_classifier.predict(X_test), average='macro'),
+#     'recall': recall_score(y_test, sklearn_decision_tree_classifier.predict(X_test), average='macro'),
+#     'f1_score': f1_score(y_test, sklearn_decision_tree_classifier.predict(X_test), average='macro')
+# }
+# sklearn_classification_metrics['Decision Tree regressor'] = {
+#     'mse': mean_squared_error(y_test, sklearn_decision_tree_regressor.predict(X_test)),
+#     'r2_score': r2_score(y_test, sklearn_decision_tree_regressor.predict(X_test))
+# }
+
+# sklearn_classification_metrics['Random Forest classifier'] = {
+#     'accuracy': accuracy_score(y_test, sklearn_random_forest_classifier.predict(X_test)),
+#     'precision': precision_score(y_test, sklearn_random_forest_classifier.predict(X_test), average='macro'),
+#     'recall': recall_score(y_test, sklearn_random_forest_classifier.predict(X_test), average='macro'),
+#     'f1_score': f1_score(y_test, sklearn_random_forest_classifier.predict(X_test), average='macro')
+# }
+# sklearn_classification_metrics['Random Forest regressor'] = {
+#     'mse': mean_squared_error(y_test, sklearn_random_forest_regressor.predict(X_test)),
+#     'r2_score': r2_score(y_test, sklearn_random_forest_regressor.predict(X_test))
+# }
 
 
 
