@@ -1,9 +1,11 @@
 from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
+# from sklearn.model_selection import train_test_split
+
 import os
 import sys
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(project_root)
+from model_selection.train_test_split import TrainTestSplitter
 
 from supervised_learning.LinearRegression import LinearRegression
 from supervised_learning.LogisticRegression import LogisticRegression
@@ -36,7 +38,9 @@ X = iris.data
 y = iris.target
 
 # Split the dataset into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+splitter = TrainTestSplitter(random_state=42)
+X_train, X_test, y_train, y_test = splitter.split(X, y)
 n = X.shape[1]
 # Train your custom algorithms
 linear_regression = LinearRegression()
