@@ -19,7 +19,7 @@ class TrainTestSplitter:
 
     """
 
-    def __init__(self, random_state=None):
+    def __init__(self, test_size=0.2, random_state=None):
         """
         Initialize the DataSplitter.
 
@@ -29,8 +29,9 @@ class TrainTestSplitter:
             Seed for the random number generator.
         """
         self.random_state = random_state
+        self.test_size = test_size
 
-    def split(self, X, y, test_size=0.2):
+    def split(self, X, y):
         """
         Split the data into training and testing sets.
 
@@ -58,7 +59,7 @@ class TrainTestSplitter:
             np.random.seed(self.random_state)
 
         n_samples = len(X)
-        test_indices = np.random.choice(n_samples, size=int(test_size * n_samples), replace=False)
+        test_indices = np.random.choice(n_samples, size=int(self.test_size * n_samples), replace=False)
         train_indices = np.array([i for i in range(n_samples) if i not in test_indices])
 
         X_train = np.array([X[i] for i in train_indices])
