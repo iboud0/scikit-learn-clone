@@ -37,14 +37,14 @@ class DecisionTree(Predictor):
         self.min_samples_leaf = min_samples_leaf
         self.random_state = random_state
 
-    def fit(self, X, y):
+    def fit(self, X, y, sample_weight=None):
         self.n_classes_ = len(np.unique(y))
         self.n_features_ = X.shape[1]
-        self.tree_ = self._grow_tree(X, y)
+        self.tree_ = self._grow_tree(X, y,sample_weight=sample_weight)
 
     def predict(self, X):
         return np.array([self._predict(inputs) for inputs in X])
-    def _grow_tree(self, X, y, depth=0, max_depth=None):
+    def _grow_tree(self, X, y, depth=0, max_depth=None,sample_weight=None):
         if max_depth is not None and depth >= max_depth:
             return Node(value=np.argmax([np.sum(y == i) for i in range(self.n_classes_)]))
 
