@@ -13,8 +13,8 @@ from supervised_learning.knn import KNNClassifier
 from supervised_learning.NaiveBayes import GaussianNB
 from supervised_learning.DecisionTree import DecisionTreeClassifier
 from supervised_learning.DecisionTree import DecisionTreeRegressor
-from supervised_learning.NeuralNetwork import NeuralNetworkClassifier
-from supervised_learning.NeuralNetwork import NeuralNetworkRegressor
+# from supervised_learning.NeuralNetwork import NeuralNetworkClassifier
+# from supervised_learning.NeuralNetwork import NeuralNetworkRegressor
 from supervised_learning.randomForest import RandomForestClassifier
 from supervised_learning.randomForest import RandomForestRegressor
 
@@ -43,37 +43,37 @@ splitter = TrainTestSplitter(random_state=42)
 X_train, X_test, y_train, y_test = splitter.split(X, y)
 n = X.shape[1]
 # Train your custom algorithms
-# linear_regression = LinearRegression()
-# linear_regression.fit(X_train, y_train)
+linear_regression = LinearRegression()
+linear_regression.fit(X_train, y_train)
 
-# logistic_regression = LogisticRegression()
-# logistic_regression.fit(X_train, y_train)
+logistic_regression = LogisticRegression()
+logistic_regression.fit(X_train, y_train)
 
-# knn = KNNClassifier()
-# knn.fit(X_train, y_train)
+knn = KNNClassifier()
+knn.fit(X_train, y_train)
 
-# naive_bayes = GaussianNB()
-# naive_bayes.fit(X_train, y_train)
-# custom_classification_metrics ={}
+naive_bayes = GaussianNB()
+naive_bayes.fit(X_train, y_train)
+custom_classification_metrics ={}
 
 
-# decision_tree_classifier = DecisionTreeClassifier()
-# decision_tree_classifier.fit(X_train, y_train)
+decision_tree_classifier = DecisionTreeClassifier()
+decision_tree_classifier.fit(X_train, y_train)
 
-# decision_tree_regressor = DecisionTreeRegressor()
-# decision_tree_regressor.fit(X_train, y_train)
+decision_tree_regressor = DecisionTreeRegressor()
+decision_tree_regressor.fit(X_train, y_train)
 
-neural_network_classifier = NeuralNetworkClassifier(input_size=n)
-neural_network_classifier.fit(X_train, y_train)
+# neural_network_classifier = NeuralNetworkClassifier(input_size=n)
+# neural_network_classifier.fit(X_train, y_train)
 
-neural_network_regressor = NeuralNetworkRegressor(input_size=n)
-neural_network_regressor.fit(X_train, y_train)
+# neural_network_regressor = NeuralNetworkRegressor(input_size=n)
+# neural_network_regressor.fit(X_train, y_train)
 
-# random_forest_classifier = RandomForestClassifier()
-# random_forest_classifier.fit(X_train, y_train)
+random_forest_classifier = RandomForestClassifier()
+random_forest_classifier.fit(X_train, y_train)
 
-# random_forest_regressor = RandomForestRegressor()
-# random_forest_regressor.fit(X_train, y_train)
+random_forest_regressor = RandomForestRegressor()
+random_forest_regressor.fit(X_train, y_train)
 
 
 # # Evaluate the performance of each algorithm
@@ -127,34 +127,34 @@ from sklearn.ensemble import RandomForestClassifier as SklearnRandomForestRegres
 
 
 
-# sklearn_linear_regression = SklearnLinearRegression()
-# sklearn_linear_regression.fit(X_train, y_train)
+sklearn_linear_regression = SklearnLinearRegression()
+sklearn_linear_regression.fit(X_train, y_train)
 
-# sklearn_logistic_regression = SklearnLogisticRegression()
-# sklearn_logistic_regression.fit(X_train, y_train)
+sklearn_logistic_regression = SklearnLogisticRegression()
+sklearn_logistic_regression.fit(X_train, y_train)
 
-# sklearn_knn = SklearnKNNClassifier()
-# sklearn_knn.fit(X_train, y_train)
+sklearn_knn = SklearnKNNClassifier()
+sklearn_knn.fit(X_train, y_train)
 
-# sklearn_naive_bayes = SklearnGaussianNB()
-# sklearn_naive_bayes.fit(X_train, y_train)
+sklearn_naive_bayes = SklearnGaussianNB()
+sklearn_naive_bayes.fit(X_train, y_train)
 
-# sklearn_decision_tree_classifier = SklearnDecisionTreeClassifier()
-# sklearn_decision_tree_classifier.fit(X_train, y_train)
-# sklearn_decision_tree_regressor = SklearnDecisionTreeRegressor()
-# sklearn_decision_tree_regressor.fit(X_train, y_train)
+sklearn_decision_tree_classifier = SklearnDecisionTreeClassifier()
+sklearn_decision_tree_classifier.fit(X_train, y_train)
+sklearn_decision_tree_regressor = SklearnDecisionTreeRegressor()
+sklearn_decision_tree_regressor.fit(X_train, y_train)
 
-# sklearn_random_forest_classifier = SklearnRandomForestClassifier()
-# sklearn_random_forest_classifier.fit(X_train, y_train)
+sklearn_random_forest_classifier = SklearnRandomForestClassifier()
+sklearn_random_forest_classifier.fit(X_train, y_train)
 
-# sklearn_random_forest_regressor = SklearnRandomForestRegressor()
-# sklearn_random_forest_regressor.fit(X_train, y_train)
+sklearn_random_forest_regressor = SklearnRandomForestRegressor()
+sklearn_random_forest_regressor.fit(X_train, y_train)
 
-sklearn_neural_network_classifier = mlpclassifier()
-sklearn_neural_network_classifier.fit(X_train, y_train)
+# sklearn_neural_network_classifier = mlpclassifier()
+# sklearn_neural_network_classifier.fit(X_train, y_train)
 
-sklearn_neural_network_regressor = mlpregressor()
-sklearn_neural_network_regressor.fit(X_train, y_train)
+# sklearn_neural_network_regressor = mlpregressor()
+# sklearn_neural_network_regressor.fit(X_train, y_train)
 
 
 
@@ -255,49 +255,49 @@ sklearn_classification_metrics = {}
 
 
 
-# custom_classification_metrics['linear_regression_metrics'] = {
-#     'mse': mean_squared_error(y_test, linear_regression.predict(X_test)),
-#     'r2_score': r2_score(y_test, linear_regression.predict(X_test))
-# }
-# custom_classification_metrics['logistic_regression_metrics'] = {
-#     'accuracy': accuracy_score(y_test, logistic_regression.predict(X_test)),
-#     'precision': precision_score(y_test, logistic_regression.predict(X_test)),
-#     'recall': recall_score(y_test, logistic_regression.predict(X_test)),
-#     'f1_score': f1_score(y_test, logistic_regression.predict(X_test))
-# }
-# custom_classification_metrics['knn_metrics'] = {
-#     'accuracy': accuracy_score(y_test, knn.predict(X_test)),
-#     'precision': precision_score(y_test, knn.predict(X_test)),
-#     'recall': recall_score(y_test, knn.predict(X_test)),
-#     'f1_score': f1_score(y_test, knn.predict(X_test) )
-# }
-# custom_classification_metrics['naive_bayes_metrics'] = {
-#     'accuracy': accuracy_score(y_test, naive_bayes.predict(X_test)),
-#     'precision': precision_score(y_test, naive_bayes.predict(X_test)),
-#     'recall': recall_score(y_test, naive_bayes.predict(X_test), ),
-#     'f1_score': f1_score(y_test, naive_bayes.predict(X_test), )
-# }
-# custom_classification_metrics['decision_tree_metrics_classifier'] = {
-#     'accuracy': accuracy_score(y_test, decision_tree_classifier.predict(X_test)),
-#     'precision': precision_score(y_test, decision_tree_classifier.predict(X_test), ),
-#     'recall': recall_score(y_test, decision_tree_classifier.predict(X_test), ),
-#     'f1_score': f1_score(y_test, decision_tree_classifier.predict(X_test), )
-# }
-# custom_classification_metrics['decision_tree_metrics_regressor'] = {
-#     'mse': mean_squared_error(y_test, decision_tree_regressor.predict(X_test)),
-#     'r2_score': r2_score(y_test, decision_tree_regressor.predict(X_test))
-# }
+custom_classification_metrics['linear_regression_metrics'] = {
+    'mse': mean_squared_error(y_test, linear_regression.predict(X_test)),
+    'r2_score': r2_score(y_test, linear_regression.predict(X_test))
+}
+custom_classification_metrics['logistic_regression_metrics'] = {
+    'accuracy': accuracy_score(y_test, logistic_regression.predict(X_test)),
+    'precision': precision_score(y_test, logistic_regression.predict(X_test)),
+    'recall': recall_score(y_test, logistic_regression.predict(X_test)),
+    'f1_score': f1_score(y_test, logistic_regression.predict(X_test))
+}
+custom_classification_metrics['knn_metrics'] = {
+    'accuracy': accuracy_score(y_test, knn.predict(X_test)),
+    'precision': precision_score(y_test, knn.predict(X_test)),
+    'recall': recall_score(y_test, knn.predict(X_test)),
+    'f1_score': f1_score(y_test, knn.predict(X_test) )
+}
+custom_classification_metrics['naive_bayes_metrics'] = {
+    'accuracy': accuracy_score(y_test, naive_bayes.predict(X_test)),
+    'precision': precision_score(y_test, naive_bayes.predict(X_test)),
+    'recall': recall_score(y_test, naive_bayes.predict(X_test), ),
+    'f1_score': f1_score(y_test, naive_bayes.predict(X_test), )
+}
+custom_classification_metrics['decision_tree_metrics_classifier'] = {
+    'accuracy': accuracy_score(y_test, decision_tree_classifier.predict(X_test)),
+    'precision': precision_score(y_test, decision_tree_classifier.predict(X_test), ),
+    'recall': recall_score(y_test, decision_tree_classifier.predict(X_test), ),
+    'f1_score': f1_score(y_test, decision_tree_classifier.predict(X_test), )
+}
+custom_classification_metrics['decision_tree_metrics_regressor'] = {
+    'mse': mean_squared_error(y_test, decision_tree_regressor.predict(X_test)),
+    'r2_score': r2_score(y_test, decision_tree_regressor.predict(X_test))
+}
 
-# custom_classification_metrics['random_forest_classifier'] = {
-#     'accuracy': accuracy_score(y_test, random_forest_classifier.predict(X_test)),
-#     'precision': precision_score(y_test, random_forest_classifier.predict(X_test)),
-#     'recall': recall_score(y_test, random_forest_classifier.predict(X_test)),
-#     'f1_score': f1_score(y_test, random_forest_classifier.predict(X_test))
-# }
-# custom_classification_metrics['random_forest_regressor'] = {
-#     'mse': mean_squared_error(y_test, random_forest_regressor.predict(X_test)),
-#     'r2_score': r2_score(y_test, random_forest_regressor.predict(X_test))
-# }
+custom_classification_metrics['random_forest_classifier'] = {
+    'accuracy': accuracy_score(y_test, random_forest_classifier.predict(X_test)),
+    'precision': precision_score(y_test, random_forest_classifier.predict(X_test)),
+    'recall': recall_score(y_test, random_forest_classifier.predict(X_test)),
+    'f1_score': f1_score(y_test, random_forest_classifier.predict(X_test))
+}
+custom_classification_metrics['random_forest_regressor'] = {
+    'mse': mean_squared_error(y_test, random_forest_regressor.predict(X_test)),
+    'r2_score': r2_score(y_test, random_forest_regressor.predict(X_test))
+}
 
 
 
