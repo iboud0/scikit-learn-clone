@@ -4,7 +4,7 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(project_root)
 
 import unittest
-from metrics import (accuracy_score, 
+from metrics_model_evaluation import (accuracy_score, 
                      confusion_matrix, 
                      f1_score,
                      mean_absolute_error, 

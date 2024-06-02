@@ -8,7 +8,7 @@ from supervised_learning.DecisionTree import DecisionTreeClassifier
 from sklearn.ensemble import AdaBoostClassifier as SklearnAdaBoostClassifier
 from sklearn.datasets import load_iris
 from model_selection.train_test_split import TrainTestSplitter
-from metrics.accuracy import accuracy_score
+from metrics_model_evaluation.accuracy import accuracy_score
 
 class TestAdaBoostClassifier(unittest.TestCase):
     def setUp(self):

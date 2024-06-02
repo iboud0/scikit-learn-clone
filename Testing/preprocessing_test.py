@@ -8,18 +8,17 @@ import pandas as pd
 
 from preprocessing.impute_missing_values_mean import impute_missing_values_mean
 from preprocessing.impute_missing_values_median import impute_missing_values_median
-# from preprocessing.impute_missing_values_mode import impute_missing_values_mode
-# from preprocessing.standard_scaler import StandardScaler
-# from preprocessing.min_max_scaler import MinMaxScaler
+from preprocessing.impute_missing_values_mode import impute_missing_values_mode
 from preprocessing.onehotencoder import OneHotEncoder
 from preprocessing.labelencoder import LabelEncoder
 from preprocessing.normalize_features import normalize_features
 from preprocessing.scale_features_min_max import scale_features
+from preprocessing.scale_features_standard import scale_features
 from preprocessing.select_features import select_features
 from utilities.data_loading import load_csv
-# from preprocessing.outliers import outliers
+from preprocessing.outliers import detect_outliers
+from preprocessing.numerical_categorical_variables import ColumnClassifier
 
-# from preprocessing.pca import PCA
 
 # Specify the full path to the dataset file
 # dataset_path = os.path.join(project_root, 'data', 'titanic_fare.csv')
@@ -72,12 +71,7 @@ print("Normalized Features:")
 print(X_normalized)
 
 
-# Scale the features
-# X = titanic_data[['age', 'fare']]
 
-# X_scaled = scale_features(X)
-# print("Scaled Features:")
-# print(X_scaled)
 
 
 #select features

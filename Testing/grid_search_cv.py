@@ -6,7 +6,7 @@ sys.path.append(project_root)
 from sklearn.datasets import load_iris
 from model_selection.train_test_split import TrainTestSplitter
 from supervised_learning.knn import KNNClassifier
-from metrics.accuracy import accuracy_score
+from metrics_model_evaluation.accuracy import accuracy_score
 from model_selection.grid_search import GridSearchCV
 from model_selection.kfold import KFold
 

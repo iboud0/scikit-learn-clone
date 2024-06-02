@@ -6,7 +6,7 @@ from copy import deepcopy
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(project_root)
 from Estimator import Estimator
-from metrics.accuracy import accuracy_score
+from metrics_model_evaluation.accuracy import accuracy_score
 
 class ClassifierMixin:
     def score(self, X, y):

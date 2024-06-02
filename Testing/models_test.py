@@ -20,14 +20,14 @@ from supervised_learning.randomForest import RandomForestRegressor
 
 
 
-from metrics.accuracy import accuracy_score
-from metrics.precision import  precision_score
-from metrics.recall import recall_score
-from metrics.confusion_matrix import confusion_matrix
-from metrics.f1_score import f1_score
-from metrics.mean_absolute_error import mean_absolute_error
-from metrics.mean_squared_error import mean_squared_error
-from metrics.r2_score import r2_score
+from metrics_model_evaluation.accuracy import accuracy_score
+from metrics_model_evaluation.precision import  precision_score
+from metrics_model_evaluation.recall import recall_score
+from metrics_model_evaluation.confusion_matrix import confusion_matrix
+from metrics_model_evaluation.f1_score import f1_score
+from metrics_model_evaluation.mean_absolute_error import mean_absolute_error
+from metrics_model_evaluation.mean_squared_error import mean_squared_error
+from metrics_model_evaluation.r2_score import r2_score
 # from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix, f1_score, mean_squared_error
 # from sklearn.metrics import r2_score
 
