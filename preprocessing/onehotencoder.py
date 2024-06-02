@@ -19,7 +19,7 @@ class OneHotEncoder(Transformer):
         # self.drop = drop
         # self.max_categories = max_categories
         # self.min_frequency = min_frequency
-        self.feature_name_combiner = feature_name_combiner
+        self.feature_name_combiner = feature_name_combiner if feature_name_combiner is not None else self.default_feature_name_combiner
 
         self.categories_ = None
         # self.infrequent_categories_ = None
@@ -52,12 +52,14 @@ class OneHotEncoder(Transformer):
         - X_encoded: Transformed data in one-hot encoded format.
         """
         # Initialize an empty array to store the encoded data
-        X_encoded = np.zeros((X.shape[0], len(self.feature_names_out_)))
+        X_encoded = np.zeros((X.shape[0], sum(len(categories) for categories in self.categories_)))
 
         # Iterate over each feature and encode it using one-hot encoding
+        offset = 0
         for i, (column, categories) in enumerate(zip(X.T, self.categories_)):
             encoded = np.eye(len(categories))[np.searchsorted(categories, column)]
-            X_encoded[:, i:i+len(categories)] = encoded
+            X_encoded[:, offset:offset+len(categories)] = encoded
+            offset += len(categories)
 
         return X_encoded
 
@@ -103,3 +105,6 @@ class OneHotEncoder(Transformer):
             return self.feature_name_combiner(feature, category)
         else:
             return f'x{feature}_{category}'
+        
+    def default_feature_name_combiner(self, feature, category):
+        return f'x{feature}_{category}'
