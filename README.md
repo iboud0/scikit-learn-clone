@@ -54,7 +54,9 @@ scikit_learn_clone/
 │   ├── DecisionTree.py  
 │   ├── knn.py  
 │   ├── LinearRegression.py  
-│   ├── LogisticRegression.py  
+│   ├── LogisticRegression.py
+│   ├── NaiveBayes.py 
+│   ├── NeuralNetwork.py 
 ├── testing/  
 ├── utilities/  
 │   ├── __init__.py  
@@ -178,6 +180,8 @@ for train_index, test_index in kf.split(X):
 - **k-Nearest Neighbors**: k-Nearest Neighbors algorithm.
 - **Linear Regression**: Linear Regression algorithm.
 - **Logistic Regression**: Logistic Regression algorithm.
+- **Naive Bayes**: Naive Bayes algorithm.
+- **Neural Network**: Neural Network algorithm.
 
 ## Contributing
 
