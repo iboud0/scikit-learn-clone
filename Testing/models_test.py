@@ -15,8 +15,8 @@ from supervised_learning.DecisionTree import DecisionTreeClassifier
 from supervised_learning.DecisionTree import DecisionTreeRegressor
 # from supervised_learning.NeuralNetwork import NeuralNetworkClassifier
 # from supervised_learning.NeuralNetwork import NeuralNetworkRegressor
-from supervised_learning.randomForest import RandomForestClassifier
-from supervised_learning.randomForest import RandomForestRegressor
+from ensemble_methods.randomForest import RandomForestClassifier
+from ensemble_methods.randomForest import RandomForestRegressor
 
 
 
