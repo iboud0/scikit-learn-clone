@@ -1,5 +1,9 @@
+import os
+import sys
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(project_root)
 import numpy as np
-from kfold import KFold
+from model_selection.kfold import KFold
 from Estimator import Estimator
 
 def cross_val_score(estimator: Estimator, X, y, cv=None):
