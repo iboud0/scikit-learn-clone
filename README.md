@@ -8,65 +8,67 @@ Scikit Learn Clone is a custom implementation of various machine learning algori
 
 The project is organized into several modules, each focusing on a specific aspect of machine learning. Below is the detailed structure:
 
-scikit_learn_clone/
-├── data/                                  # Placeholder for datasets
-├── ensemble_methods/                      # Ensemble methods module
-│   ├── __init__.py
-│   ├── adaBoost.py                        # AdaBoost implementation
-│   ├── bagging.py                         # Bagging implementation
-│   ├── gradient_boosting.py               # Gradient Boosting implementation
-│   ├── randomForest.py                    # Random Forest implementation
-│   ├── stacking.py                        # Stacking implementation
-├── metrics_model_evaluation/              # Metrics and model evaluation module
-│   ├── __init__.py
-│   ├── accuracy.py                        # Accuracy metric
-│   ├── confusion_matrix.py                # Confusion Matrix implementation
-│   ├── f1_score.py                        # F1 Score metric
-│   ├── mean_absolute_error.py             # Mean Absolute Error metric
-│   ├── mean_squared_error.py              # Mean Squared Error metric
-│   ├── precision.py                       # Precision metric
-│   ├── r2_score.py                        # R2 Score metric
-│   ├── recall.py                          # Recall metric
-├── model_selection/                       # Model selection module
-│   ├── __init__.py
-│   ├── cross_validation.py                # Cross-validation utilities
-│   ├── grid_search.py                     # Grid search implementation
-│   ├── kfold.py                           # K-Fold cross-validation
-│   ├── make_scorer.py                     # Custom scorer creation
-│   ├── param_grid.py                      # Parameter grid definition
-│   ├── train_test_split.py                # Train-test split utility
-├── preprocessing/                         # Data preprocessing module
-│   ├── __init__.py
-│   ├── impute_missing_values_mean.py      # Mean imputation
-│   ├── impute_missing_values_median.py    # Median imputation
-│   ├── impute_missing_values_mode.py      # Mode imputation
-│   ├── labelencoder.py                    # Label encoding
-│   ├── normalize_features.py              # Feature normalization
-│   ├── numerical_categorical_variable.py  # Handling numerical categorical variables
-│   ├── onehotencoder.py                   # One-hot encoding
-│   ├── outliers.py                        # Outlier detection and handling
-│   ├── scale_features_min_max.py          # Min-Max scaling
-│   ├── scale_features_standard.py         # Standard scaling
-│   ├── select_features.py                 # Feature selection
-├── supervised_learning/                   # Supervised learning algorithms
-│   ├── __init__.py
-│   ├── DecisionTree.py                    # Decision Tree implementation
-│   ├── knn.py                             # k-Nearest Neighbors implementation
-│   ├── LinearRegression.py                # Linear Regression implementation
-│   ├── LogisticRegression.py              # Logistic Regression implementation
-├── testing/                               # Module for testing the code
-├── utilities/                             # General utilities
-│   ├── __init__.py
-│   ├── Estimator.py                       # Base Estimator class
-│   ├── MetaEstimator.py                   # Meta Estimator class
-│   ├── ModelSelector.py                   # Model selection utilities
-│   ├── Pipeline.py                        # Pipeline implementation
-│   ├── Predictor.py                       # Base Predictor class
-│   ├── Transformer.py                     # Base Transformer class
-├── .gitignore                             # Git ignore file
-├── README.md                              # Project README file
-└── setup.py                               # Setup script for packaging
+```
+scikit_learn_clone/  
+├── data/  
+├── ensemble_methods/  
+│   ├── __init__.py  
+│   ├── adaBoost.py  
+│   ├── bagging.py  
+│   ├── gradient_boosting.py  
+│   ├── randomForest.py  
+│   ├── stacking.py  
+├── metrics_model_evaluation/  
+│   ├── __init__.py  
+│   ├── accuracy.py  
+│   ├── confusion_matrix.py  
+│   ├── f1_score.py  
+│   ├── mean_absolute_error.py  
+│   ├── mean_squared_error.py  
+│   ├── precision.py  
+│   ├── r2_score.py  
+│   ├── recall.py  
+├── model_selection/  
+│   ├── __init__.py  
+│   ├── cross_validation.py  
+│   ├── grid_search.py  
+│   ├── kfold.py  
+│   ├── make_scorer.py  
+│   ├── param_grid.py  
+│   ├── train_test_split.py  
+├── preprocessing/  
+│   ├── __init__.py  
+│   ├── impute_missing_values_mean.py  
+│   ├── impute_missing_values_median.py  
+│   ├── impute_missing_values_mode.py  
+│   ├── labelencoder.py  
+│   ├── normalize_features.py  
+│   ├── numerical_categorical_variable.py  
+│   ├── onehotencoder.py  
+│   ├── outliers.py  
+│   ├── scale_features_min_max.py  
+│   ├── scale_features_standard.py  
+│   ├── select_features.py  
+├── supervised_learning/  
+│   ├── __init__.py  
+│   ├── DecisionTree.py  
+│   ├── knn.py  
+│   ├── LinearRegression.py  
+│   ├── LogisticRegression.py  
+├── testing/  
+├── utilities/  
+│   ├── __init__.py  
+│   ├── Estimator.py  
+│   ├── MetaEstimator.py  
+│   ├── ModelSelector.py  
+│   ├── Pipeline.py  
+│   ├── Predictor.py  
+│   ├── Transformer.py  
+├── .gitignore  
+├── README.md  
+└── setup.py  
 
+```
 ## Installation
 
 To install the package, use pip:
