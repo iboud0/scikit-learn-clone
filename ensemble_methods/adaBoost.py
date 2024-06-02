@@ -8,12 +8,7 @@ sys.path.append(project_root)
 from Estimator import Estimator
 from metrics_model_evaluation.accuracy import accuracy_score
 
-class ClassifierMixin:
-    def score(self, X, y):
-        return accuracy_score(y, self.predict(X))
-    
-
-
+# Utility functions
 def check_is_fitted(estimator, attributes):
     if isinstance(attributes, str):
         attributes = [attributes]
@@ -24,6 +19,20 @@ def check_is_fitted(estimator, attributes):
 def clone(estimator):
     return deepcopy(estimator)
 
+# ClassifierMixin for scoring
+class ClassifierMixin:
+    def score(self, X, y):
+        return accuracy_score(y, self.predict(X))
+
+# RegressorMixin for scoring
+class RegressorMixin:
+    def score(self, X, y):
+        return self._score(X, y)
+    
+    def _score(self, X, y):
+        return 1 - np.sum((y - self.predict(X))**2) / np.sum((y - np.mean(y))**2)
+
+# AdaBoostClassifier
 class AdaBoostClassifier(Estimator, ClassifierMixin):
     def __init__(self, base_estimator, n_estimators=10, random_state=None):
         self.base_estimator = base_estimator
@@ -49,12 +58,10 @@ class AdaBoostClassifier(Estimator, ClassifierMixin):
             if error == 0:
                 alpha = 0
             else:
-
-
                 alpha = np.log((1 - error) / error) / 2
+            
             sample_weight *= np.exp(-alpha * y * y_pred)
             sample_weight /= np.sum(sample_weight)
-
 
             self.estimators_.append(estimator)
             self.estimator_weights[i] = alpha
@@ -73,19 +80,10 @@ class AdaBoostClassifier(Estimator, ClassifierMixin):
                 class_counts[:, j] += (y_pred == j) * self.estimator_weights[i]
 
         return np.argmax(class_counts, axis=1)
-    
-def r2_score(y_true, y_pred):
-        ss_res = np.sum((y_true - y_pred) ** 2)
-        ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
-        return 1 - (ss_res / ss_tot)
 
-class RegressorMixin:
-    def score(self, X, y):
-        y_pred = self.predict(X)
-        return r2_score(y, y_pred)  # Using R-squared for scoring
-
+# AdaBoostRegressor
 class AdaBoostRegressor(Estimator, RegressorMixin):
-    def __init__(self, base_estimator, n_estimators=10, random_state=None):
+    def __init__(self, base_estimator, n_estimators=50, random_state=None):
         self.base_estimator = base_estimator
         self.n_estimators = n_estimators
         self.random_state = random_state
@@ -101,16 +99,17 @@ class AdaBoostRegressor(Estimator, RegressorMixin):
             estimator.fit(X, y, sample_weight=sample_weight)
             y_pred = estimator.predict(X)
 
-            errors = np.abs(y_pred - y)
-            error = np.sum(sample_weight * errors)
+            residuals = y - y_pred
+            error = np.sum(sample_weight * np.abs(residuals)) / np.sum(sample_weight)
 
             if error >= 0.5:
                 break
             if error == 0:
-                alpha = 0
+                alpha = 1
             else:
-                alpha = np.log((1 - error) / error) / 2
-            sample_weight *= np.exp(-alpha * errors)
+                alpha = 0.5 * np.log((1 - error) / error)
+
+            sample_weight *= np.exp(alpha * residuals)
             sample_weight /= np.sum(sample_weight)
 
             self.estimators_.append(estimator)
@@ -120,11 +119,9 @@ class AdaBoostRegressor(Estimator, RegressorMixin):
 
     def predict(self, X):
         check_is_fitted(self, ['estimators_', 'estimator_weights'])
-        n_estimators = len(self.estimators_)
-        predictions = np.zeros(X.shape[0])
 
+        y_pred = np.zeros(X.shape[0])
         for i, estimator in enumerate(self.estimators_):
-            y_pred = estimator.predict(X)
-            predictions += self.estimator_weights[i] * y_pred
+            y_pred += self.estimator_weights[i] * estimator.predict(X)
 
-        return predictions
+        return y_pred
