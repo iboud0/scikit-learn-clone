@@ -14,7 +14,7 @@ from preprocessing.impute_missing_values_median import impute_missing_values_med
 from preprocessing.onehotencoder import OneHotEncoder
 from preprocessing.labelencoder import LabelEncoder
 from preprocessing.normalize_features import normalize_features
-from preprocessing.scale_features import scale_features
+from preprocessing.scale_features_min_max import scale_features
 from preprocessing.select_features import select_features
 from utilities.data_loading import load_csv
 # from preprocessing.outliers import outliers

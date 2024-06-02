@@ -80,6 +80,7 @@ class OneHotEncoder(Transformer):
 
         Returns:
         - feature_names: Feature names after encoding.
+
         """
         feature_names = []
         for i, categories in enumerate(self.categories_):

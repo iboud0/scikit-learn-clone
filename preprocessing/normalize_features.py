@@ -21,7 +21,7 @@ def normalize_features(X, norm='l2', axis=1):
     elif norm == 'l2':
         ord = 2
     elif norm == 'max':
-        ord = np.inf
+        ord = - np.inf
     else:
         raise ValueError("Invalid norm. Supported norms are 'l1', 'l2', and 'max'.")
 
