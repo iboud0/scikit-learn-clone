@@ -1,4 +1,5 @@
-```
+### README.md
+
 # Scikit Learn Clone
 
 Scikit Learn Clone is a custom implementation of various machine learning algorithms and utilities inspired by Scikit-Learn. This project is designed to provide a comprehensive set of tools for data preprocessing, model selection, evaluation, and supervised learning.
@@ -7,7 +8,6 @@ Scikit Learn Clone is a custom implementation of various machine learning algori
 
 The project is organized into several modules, each focusing on a specific aspect of machine learning. Below is the detailed structure:
 
-```
 scikit_learn_clone/
 ├── data/                                  # Placeholder for datasets
 ├── ensemble_methods/                      # Ensemble methods module
@@ -66,7 +66,6 @@ scikit_learn_clone/
 ├── .gitignore                             # Git ignore file
 ├── README.md                              # Project README file
 └── setup.py                               # Setup script for packaging
-```
 
 ## Installation
 
@@ -193,3 +192,5 @@ Contributions are welcome! Please follow these steps:
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 ```
+
+This revised version ensures the project structure is properly separated and formatted. This will improve readability and help users quickly find relevant information.
