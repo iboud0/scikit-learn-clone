@@ -20,7 +20,7 @@ def check_is_fitted(estimator, attributes):
         attributes = [attributes]
     for attr in attributes:
         if not hasattr(estimator, attr):
-            raise ValueError(f"This {type(estimator).__name__} instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.")
+            raise ValueError(f"This {type(estimator)._name_} instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.")
 
 def resample(X, y, random_state=None):
     if random_state is not None:
@@ -37,11 +37,10 @@ class BaggingClassifier(Estimator, ClassifierMixin):
 
     def fit(self, X, y):
         self.estimators_ = []
-        np.random.seed(self.random_state)
         
-        for _ in range(self.n_estimators):
+        for i in range(self.n_estimators):
             estimator = clone(self.base_estimator)
-            X_resampled, y_resampled = resample(X, y, random_state=self.random_state)
+            X_resampled, y_resampled = resample(X, y, random_state=self.random_state + i)  # Use different random states
             estimator.fit(X_resampled, y_resampled)
             self.estimators_.append(estimator)
         
@@ -53,4 +52,4 @@ class BaggingClassifier(Estimator, ClassifierMixin):
         check_is_fitted(self, ['estimators_'])
         predictions = np.array([estimator.predict(X) for estimator in self.estimators_])
         print(f"Made predictions with {len(self.estimators_)} estimators.")
-        return np.apply_along_axis(lambda x: np.bincount(x).argmax(), axis=0, arr=predictions)
+        return np.array([np.bincount(predictions[:, i]).argmax() for i in range(predictions.shape[1])])
