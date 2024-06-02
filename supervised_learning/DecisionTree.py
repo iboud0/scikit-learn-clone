@@ -67,57 +67,26 @@ class DecisionTree(Predictor):
 
 
 
-    # def _best_split(self, X, y):
-    #     m, n = X.shape
-    #     if m <= 1:
-    #         return None, None
-
-    #     num_parent = [np.sum(y == c) for c in range(self.n_classes_)]
-    #     best_gini = 1.0 - sum((n / m) ** 2 for n in num_parent)
-    #     best_feature, best_threshold = None, None
-
-    #     for feature in range(self.n_features_):
-    #         thresholds, classes = zip(*sorted(zip(X[:, feature], y)))
-    #         num_left = [0] * self.n_classes_
-    #         num_right = num_parent.copy()
-
-    #         for i in range(1, m):
-    #             c = classes[i - 1]
-    #             num_left[c] += 1
-    #             num_right[c] -= 1
-    #             gini_left = 1.0 - sum((num_left[x] / i) ** 2 for x in range(self.n_classes_))
-    #             gini_right = 1.0 - sum((num_right[x] / (m - i)) ** 2 for x in range(self.n_classes_))
-    #             gini = (i * gini_left + (m - i) * gini_right) / m
-
-    #             if thresholds[i] == thresholds[i - 1]:
-    #                 continue
-
-    #             if gini < best_gini:
-    #                 best_gini = gini
-    #                 best_feature = feature
-    #                 best_threshold = (thresholds[i] + thresholds[i - 1]) / 2
-
-    #     return best_feature, best_threshold
     def _best_split(self, X, y):
         m, n = X.shape
         if m <= 1:
             return None, None
 
-        num_parent = [np.sum(y == c) for c in np.unique(y)]
-        best_gini = 1.0 - sum((num / m) ** 2 for num in num_parent)
-        best_idx, best_thr = None, None
+        num_parent = [np.sum(y == c) for c in range(self.n_classes_)]
+        best_gini = 1.0 - sum((n / m) ** 2 for n in num_parent)
+        best_feature, best_threshold = None, None
 
-        for idx in range(n):
-            thresholds, classes = zip(*sorted(zip(X[:, idx], y)))
-            num_left = [0] * len(num_parent)
+        for feature in range(self.n_features_):
+            thresholds, classes = zip(*sorted(zip(X[:, feature], y)))
+            num_left = [0] * self.n_classes_
             num_right = num_parent.copy()
-            
+
             for i in range(1, m):
-                c = int(classes[i - 1])
+                c = classes[i - 1]
                 num_left[c] += 1
                 num_right[c] -= 1
-                gini_left = 1.0 - sum((num_left[x] / i) ** 2 for x in range(len(num_left)))
-                gini_right = 1.0 - sum((num_right[x] / (m - i)) ** 2 for x in range(len(num_right)))
+                gini_left = 1.0 - sum((num_left[x] / i) ** 2 for x in range(self.n_classes_))
+                gini_right = 1.0 - sum((num_right[x] / (m - i)) ** 2 for x in range(self.n_classes_))
                 gini = (i * gini_left + (m - i) * gini_right) / m
 
                 if thresholds[i] == thresholds[i - 1]:
@@ -125,11 +94,10 @@ class DecisionTree(Predictor):
 
                 if gini < best_gini:
                     best_gini = gini
-                    best_idx = idx
-                    best_thr = (thresholds[i] + thresholds[i - 1]) / 2
+                    best_feature = feature
+                    best_threshold = (thresholds[i] + thresholds[i - 1]) / 2
 
-        return best_idx, best_thr
-
+        return best_feature, best_threshold
 
     def _predict(self, inputs):
         node = self.tree_

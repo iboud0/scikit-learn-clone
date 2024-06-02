@@ -20,7 +20,7 @@ def check_is_fitted(estimator, attributes):
         attributes = [attributes]
     for attr in attributes:
         if not hasattr(estimator, attr):
-            raise ValueError(f"This {type(estimator).__name__} instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.")
+            raise ValueError(f"This {type(estimator)._name_} instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.")
 
 def resample(X, y, random_state=None):
     if random_state is not None:
