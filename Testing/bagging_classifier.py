@@ -7,7 +7,7 @@ from metrics_model_evaluation.accuracy import accuracy_score
 
 # Test script
 import unittest
-from ensemble_methods.baggingClassifier import BaggingClassifier
+from ensemble_methods.bagging import BaggingClassifier
 from supervised_learning.DecisionTree import DecisionTreeClassifier
 from sklearn.ensemble import BaggingClassifier as SklearnBaggingClassifier
 from sklearn.datasets import load_iris

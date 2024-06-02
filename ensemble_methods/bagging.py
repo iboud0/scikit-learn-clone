@@ -12,6 +12,11 @@ class ClassifierMixin:
     def score(self, X, y):
         return accuracy_score(y, self.predict(X))
 
+class RegressorMixin:
+    def score(self, X, y):
+        y_pred = self.predict(X)
+        return 1 - np.sum((y - y_pred) ** 2) / np.sum((y - np.mean(y)) ** 2)
+
 def clone(estimator):
     return deepcopy(estimator)
 
@@ -53,3 +58,33 @@ class BaggingClassifier(Estimator, ClassifierMixin):
         predictions = np.array([estimator.predict(X) for estimator in self.estimators_])
         print(f"Made predictions with {len(self.estimators_)} estimators.")
         return np.array([np.bincount(predictions[:, i]).argmax() for i in range(predictions.shape[1])])
+    
+class BaggingRegressor(Estimator, RegressorMixin):
+    def __init__(self, base_estimator, n_estimators=10, random_state=None):
+        self.base_estimator = base_estimator
+        self.n_estimators = n_estimators
+        self.random_state = random_state
+
+    def fit(self, X, y):
+        self.estimators_ = []
+
+        for i in range(self.n_estimators):
+            estimator = clone(self.base_estimator)
+            X_resampled, y_resampled = resample(X, y, random_state=self.random_state + i)  # Use different random states
+            estimator.fit(X_resampled, y_resampled)
+            self.estimators_.append(estimator)
+
+        print(f"Fit {len(self.estimators_)} estimators.")
+        return self
+
+    def predict(self, X):
+        print("Checking if fitted...")
+        check_is_fitted(self, ['estimators_'])
+        predictions = np.array([estimator.predict(X) for estimator in self.estimators_])
+        print(f"Made predictions with {len(self.estimators_)} estimators.")
+        return np.mean(predictions, axis=0)
+
+    def score(self, X, y):
+        y_pred = self.predict(X)
+        return 1 - np.sum((y - y_pred) ** 2) / np.sum((y - np.mean(y)) ** 2)
+

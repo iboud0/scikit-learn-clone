@@ -11,6 +11,8 @@ from metrics_model_evaluation.accuracy import accuracy_score
 class ClassifierMixin:
     def score(self, X, y):
         return accuracy_score(y, self.predict(X))
+    
+
 
 def check_is_fitted(estimator, attributes):
     if isinstance(attributes, str):
@@ -71,4 +73,58 @@ class AdaBoostClassifier(Estimator, ClassifierMixin):
                 class_counts[:, j] += (y_pred == j) * self.estimator_weights[i]
 
         return np.argmax(class_counts, axis=1)
+    
+def r2_score(y_true, y_pred):
+        ss_res = np.sum((y_true - y_pred) ** 2)
+        ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
+        return 1 - (ss_res / ss_tot)
 
+class RegressorMixin:
+    def score(self, X, y):
+        y_pred = self.predict(X)
+        return r2_score(y, y_pred)  # Using R-squared for scoring
+
+class AdaBoostRegressor(Estimator, RegressorMixin):
+    def __init__(self, base_estimator, n_estimators=10, random_state=None):
+        self.base_estimator = base_estimator
+        self.n_estimators = n_estimators
+        self.random_state = random_state
+        self.estimator_weights = np.zeros(n_estimators)
+        self.estimators_ = []
+
+    def fit(self, X, y):
+        n_samples = X.shape[0]
+        sample_weight = np.ones(n_samples) / n_samples
+
+        for i in range(self.n_estimators):
+            estimator = clone(self.base_estimator)
+            estimator.fit(X, y, sample_weight=sample_weight)
+            y_pred = estimator.predict(X)
+
+            errors = np.abs(y_pred - y)
+            error = np.sum(sample_weight * errors)
+
+            if error >= 0.5:
+                break
+            if error == 0:
+                alpha = 0
+            else:
+                alpha = np.log((1 - error) / error) / 2
+            sample_weight *= np.exp(-alpha * errors)
+            sample_weight /= np.sum(sample_weight)
+
+            self.estimators_.append(estimator)
+            self.estimator_weights[i] = alpha
+
+        return self
+
+    def predict(self, X):
+        check_is_fitted(self, ['estimators_', 'estimator_weights'])
+        n_estimators = len(self.estimators_)
+        predictions = np.zeros(X.shape[0])
+
+        for i, estimator in enumerate(self.estimators_):
+            y_pred = estimator.predict(X)
+            predictions += self.estimator_weights[i] * y_pred
+
+        return predictions

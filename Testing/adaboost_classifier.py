@@ -8,7 +8,7 @@ import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
-from ensemble_methods.adaBoostClassifier import AdaBoostClassifier
+from ensemble_methods.adaBoost import AdaBoostClassifier
 
 class TestAdaBoostClassifier(unittest.TestCase):
     def setUp(self):
