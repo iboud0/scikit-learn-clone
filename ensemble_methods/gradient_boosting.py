@@ -51,14 +51,17 @@ class GradientBoostingClassifier(Predictor):
         positive_class_prob = np.sum(y) / len(y)
         self.initial_pred = np.log(positive_class_prob / (1 - positive_class_prob))
         predictions = np.full(y.shape, self.initial_pred)
-        
+
         for _ in range(self.n_estimators):
             # Compute the gradients (negative gradients for binary log loss)
             gradients = y - self._sigmoid(predictions)
-            
-            # Fit a new tree to the gradients
+
+            # Convert gradients to binary classes
+            classes = np.where(gradients >= 0.5, 1, 0)
+
+            # Fit a new tree to the classes
             tree = DecisionTreeClassifier(max_depth=self.max_depth)
-            tree.fit(X, gradients)
+            tree.fit(X, classes)
             self.trees.append(tree)
 
             # Update predictions
