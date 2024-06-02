@@ -1,8 +1,4 @@
-Sure, here's an expanded version of the `README.md` with more details and explanations:
-
-### README.md
-
-```markdown
+```
 # Scikit Learn Clone
 
 Scikit Learn Clone is a custom implementation of various machine learning algorithms and utilities inspired by Scikit-Learn. This project is designed to provide a comprehensive set of tools for data preprocessing, model selection, evaluation, and supervised learning.
