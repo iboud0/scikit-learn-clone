@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='sklearn_clone',
-    version='0.1.0',
+    version='0.1.1',
     description='A custom implementation of various machine learning algorithms and utilities inspired by Scikit-Learn',
     author='Ilyas Boudhaine & Zineb Abercha',
     author_email='ilyasboudhaine1@gmail.com, zineb03abercha@gmail.com',
