@@ -1,11 +1,34 @@
 import os
 import sys
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-sys.path.append(project_root)
 from model_selection.param_grid import ParameterGrid
 import numpy as np
 
 class GridSearchCV:
+    """
+    Exhaustive search over specified parameter values for an estimator.
+
+    Parameters:
+        estimator : object
+            An estimator object implementing 'fit' and 'predict' methods.
+        param_grid : dict
+            Dictionary with parameters names (string) as keys and lists of parameter settings to try as values.
+        scoring : callable, default=None
+            A scoring function used to evaluate the predictions on the test set.
+        cv : int or cross-validation generator, default=None
+            Determines the cross-validation splitting strategy.
+        n_jobs : int, default=None
+            Number of jobs to run in parallel.
+        verbose : int, default=0
+            Controls the verbosity: the higher, the more messages.
+
+    Attributes:
+        best_params_ : dict
+            Parameter setting that gave the best results on the hold out data.
+        best_score_ : float
+            Mean cross-validated score of the best_estimator_.
+        best_estimator_ : object
+            Estimator that was chosen by the search, i.e., estimator which gave highest score.
+    """
     def __init__(self, estimator, param_grid, scoring=None, cv=None, n_jobs=None, verbose=0):
         self.estimator = estimator
         self.param_grid = param_grid
@@ -15,6 +38,19 @@ class GridSearchCV:
         self.verbose = verbose
 
     def fit(self, X, y=None):
+        """
+        Run fit with all sets of parameters.
+
+        Parameters:
+            X : array-like of shape (n_samples, n_features)
+                Training vector, where n_samples is the number of samples and n_features is the number of features.
+            y : array-like of shape (n_samples,), default=None
+                Target vector relative to X.
+        
+        Returns:
+            self : object
+                Returns self.
+        """
         if self.scoring is None:
             raise ValueError("Scoring parameter is required")
 
@@ -50,6 +86,19 @@ class GridSearchCV:
         return self
 
     def score(self, X, y=None):
+        """
+        Return the score on the given data.
+
+        Parameters:
+            X : array-like of shape (n_samples, n_features)
+                Test samples.
+            y : array-like of shape (n_samples,), default=None
+                True labels for X.
+
+        Returns:
+            score : float
+                The score of the best_estimator_ on the test data.
+        """
         cv = self.cv
         param_grid = list(ParameterGrid(self.param_grid))
         scores = []
@@ -76,11 +125,7 @@ class GridSearchCV:
         self.best_estimator_ = self.estimator.set_params(**best_params)
         self.best_estimator_.fit(X, y)
 
-     
-        return self   
-
-
-
+        return self
 
 
 

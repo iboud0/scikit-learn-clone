@@ -7,7 +7,28 @@ from model_selection.kfold import KFold
 from Estimator import Estimator
 
 def cross_val_score(estimator: Estimator, X, y, cv=None):
-    # TODO: add attribute scoring
+    """
+    Evaluate a score by cross-validation.
+
+    Parameters:
+        estimator : Estimator object implementing 'fit' and 'score'
+            The object to use to fit the data.
+        X : array-like of shape (n_samples, n_features)
+            The data to fit.
+        y : array-like of shape (n_samples,)
+            The target variable to try to predict in the case of supervised learning.
+        cv : int, cross-validation generator, or an iterable, default=None
+            Determines the cross-validation splitting strategy.
+            Possible inputs for cv are:
+                - None, to use the default 5-fold cross-validation
+                - integer, to specify the number of folds in a KFold
+                - An object to be used as a cross-validation generator
+                - An iterable yielding train, test splits.
+    
+    Returns:
+        scores : array of float, shape=(len(list(cv)),)
+            Array of scores of the estimator for each run of the cross validation.
+    """
     if cv is None:
         cv = KFold(n_splits=5, shuffle=False, random_state=None)
 
