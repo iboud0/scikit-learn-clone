@@ -76,7 +76,7 @@ scikit_learn_clone/
 To install the package, use pip:
 
 ```bash
-pip install scikit-learn-clone
+pip install sktlearn-clone
 ```
 
 ## Usage
